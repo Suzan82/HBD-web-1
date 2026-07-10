@@ -460,6 +460,12 @@
   function blowCandles() {
     if (blown) return;
     blown = true;
+    
+    // FORCE PLAY IMMEDIATELY ON TAP TO BYPASS BROWSER BLOCKS
+    if (typeof bgAudio !== 'undefined') {
+      bgAudio.play().catch(() => {});
+    }
+    
     hint.style.opacity = '0';
     const flames = document.querySelectorAll('.flame');
     flames.forEach((f, i) => {
